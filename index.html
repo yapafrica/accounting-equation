@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Your Knowledge - Accounting Equation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: left;
+        }
+        #quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        #quiz-container h2 {
+            margin-bottom: 20px;
+        }
+        .question {
+            margin: 15px 0;
+            display: none;
+        }
+        .question input {
+            margin-right: 10px;
+        }
+        #result {
+            margin-top: 20px;
+            display: none;
+        }
+        #result p {
+            font-size: 18px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            #quiz-container {
+                width: 100%;
+            }
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h2>Test Your Knowledge - You have 10 questions!</h2>
+
+    <button id="startQuizBtn">Start Quiz</button>
+
+    <div id="questions">
+        <div class="question">
+            <p>What is the basic accounting equation?</p>
+            <label><input type="radio" name="q1" value="a"> Assets = Liabilities + Owner's Equity</label><br>
+            <label><input type="radio" name="q1" value="b"> Assets = Liabilities - Owner's Equity</label><br>
+            <label><input type="radio" name="q1" value="c"> Assets + Liabilities = Owner's Equity</label><br>
+        </div>
+
+        <div class="question">
+            <p>What is an example of an asset?</p>
+            <label><input type="radio" name="q2" value="a"> Loan from a bank</label><br>
+            <label><input type="radio" name="q2" value="b"> Cash in hand</label><br>
+            <label><input type="radio" name="q2" value="c"> Mortgage payments</label><br>
+        </div>
+
+        <div class="question">
+            <p>If liabilities increase, what happens to the accounting equation?</p>
+            <label><input type="radio" name="q3" value="a"> Owner's equity increases</label><br>
+            <label><input type="radio" name="q3" value="b"> Assets must decrease</label><br>
+            <label><input type="radio" name="q3" value="c"> Assets must increase</label><br>
+        </div>
+
+        <div class="question">
+            <p>What is an example of a liability?</p>
+            <label><input type="radio" name="q4" value="a"> Equipment</label><br>
+            <label><input type="radio" name="q4" value="b"> Accounts payable</label><br>
+            <label><input type="radio" name="q4" value="c"> Retained earnings</label><br>
+        </div>
+
+        <div class="question">
+            <p>What does owner’s equity represent?</p>
+            <label><input type="radio" name="q5" value="a"> The company's debt</label><br>
+            <label><input type="radio" name="q5" value="b"> The value of the business owned by the owner(s)</label><br>
+            <label><input type="radio" name="q5" value="c"> The value of assets after liabilities are deducted</label><br>
+        </div>
+
+        <div class="question">
+            <p>What happens when assets increase?</p>
+            <label><input type="radio" name="q6" value="a"> Liabilities must decrease</label><br>
+            <label><input type="radio" name="q6" value="b"> Owner’s equity must decrease</label><br>
+            <label><input type="radio" name="q6" value="c"> Liabilities or owner’s equity must increase</label><br>
+        </div>
+
+        <div class="question">
+            <p>If assets decrease, what happens to the equation?</p>
+            <label><input type="radio" name="q7" value="a"> Liabilities increase</label><br>
+            <label><input type="radio" name="q7" value="b"> Owner’s equity increases</label><br>
+            <label><input type="radio" name="q7" value="c"> Liabilities decrease</label><br>
+        </div>
+
+        <div class="question">
+            <p>Which of the following is NOT an asset?</p>
+            <label><input type="radio" name="q8" value="a"> Cash</label><br>
+            <label><input type="radio" name="q8" value="b"> Land</label><br>
+            <label><input type="radio" name="q8" value="c"> Rent payable</label><br>
+        </div>
+
+        <div class="question">
+            <p>What is the equation for the basic accounting formula?</p>
+            <label><input type="radio" name="q9" value="a"> Assets = Liabilities - Owner's Equity</label><br>
+            <label><input type="radio" name="q9" value="b"> Assets = Liabilities + Owner's Equity</label><br>
+            <label><input type="radio" name="q9" value="c"> Assets + Liabilities = Owner's Equity</label><br>
+        </div>
+
+        <div class="question">
+            <p>If a business takes a loan from the bank, how is the equation affected?</p>
+            <label><input type="radio" name="q10" value="a"> Assets and liabilities both increase</label><br>
+            <label><input type="radio" name="q10" value="b"> Assets increase and liabilities decrease</label><br>
+            <label><input type="radio" name="q10" value="c"> Assets and owner’s equity both increase</label><br>
+        </div>
+
+        <button id="submitBtn" style="display:none;">Submit</button>
+        <button id="retakeQuizBtn" style="display:none;" onclick="retakeQuiz()">Retake Quiz</button>
+    </div>
+
+    <div id="result" style="display:none;">
+        <p id="score"></p>
+    </div>
+</div>
+
+<script>
+    const startQuizBtn = document.getElementById('startQuizBtn');
+    const submitBtn = document.getElementById('submitBtn');
+    const resultDiv = document.getElementById('result');
+    const scoreText = document.getElementById('score');
+    const questions = document.querySelectorAll('.question');
+    const retakeQuizBtn = document.getElementById('retakeQuizBtn');
+
+    const correctAnswers = {
+        q1: 'a',
+        q2: 'b',
+        q3: 'c',
+        q4: 'b',
+        q5: 'b',
+        q6: 'c',
+        q7: 'c',
+        q8: 'c',
+        q9: 'b',
+        q10: 'a'
+    };
+
+    let score = 0;
+
+    startQuizBtn.addEventListener('click', () => {
+        startQuizBtn.style.display = 'none';
+        questions.forEach(question => question.style.display = 'block');
+        submitBtn.style.display = 'inline-block';
+    });
+
+    submitBtn.addEventListener('click', () => {
+        score = 0;
+        questions.forEach(question => {
+            const selectedAnswer = question.querySelector('input:checked');
+            const questionName = question.querySelector('input').name;
+            if (selectedAnswer && selectedAnswer.value === correctAnswers[questionName]) {
+                score++;
+            }
+        });
+        scoreText.textContent = `You got ${score} out of ${questions.length}`;
+        resultDiv.style.display = 'block';
+        submitBtn.style.display = 'none';
+        retakeQuizBtn.style.display = 'inline-block';
+    });
+
+    function retakeQuiz() {
+        score = 0;
+        resultDiv.style.display = 'none';
+        questions.forEach(question => {
+            question.style.display = 'none';
+            question.querySelectorAll('input').forEach(input => {
+                input.checked = false;
+            });
+        });
+        startQuizBtn.style.display = 'inline-block';
+        retakeQuizBtn.style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
